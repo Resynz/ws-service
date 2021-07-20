@@ -26,6 +26,7 @@ func StartServer() {
 
 	apiGroup := app.Group("/api")
 	apiGroup.GET("/ws-url", common.AuthDetection(api.GetWsUrl))
+	apiGroup.GET("/online-count", common.AuthDetection(api.GetOnlineCount))
 
 	if err := app.Run(fmt.Sprintf(":%d", config.Conf.AppPort)); err != nil {
 		log.Fatalf("start server failed! error:%s\n", err.Error())
