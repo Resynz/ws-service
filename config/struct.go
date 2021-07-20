@@ -11,7 +11,7 @@ type logConf struct {
 	RequestIdKey string `json:"request_id_key"`
 }
 
-type WxMap struct {
+type WsMap struct {
 	WsUrl   string `json:"ws_url"`
 	BaseUrl string `json:"base_url"`
 }
@@ -20,5 +20,5 @@ type Config struct {
 	Mode      string   `json:"mode"`
 	AppPort   int      `json:"app_port"`
 	LogConfig logConf  `json:"log_config"`
-	WsList    []*WxMap `json:"ws_list"`
+	WsList    []*WsMap `json:"ws_list"`
 }

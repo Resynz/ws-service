@@ -6,7 +6,7 @@ import (
 )
 
 // 分配用户到ws-server策略
-func GetWsServer(client string) *config.WxMap {
+func GetWsServer(client string) *config.WsMap {
 	if len(config.Conf.WsList) == 0 {
 		return nil
 	}
