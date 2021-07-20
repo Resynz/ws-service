@@ -1,0 +1,5 @@
+.idea
+logs
+ws-service
+configs
+go.sum
