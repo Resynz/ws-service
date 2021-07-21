@@ -44,12 +44,13 @@ func OnlineCount(w *config.WsMap) (int64, error) {
 	return r.Data.Count, nil
 }
 
-func SendMsg(w *config.WsMap, userIds, messages []string) error {
+func SendMsg(w *config.WsMap, userIds, messages, clients []string) error {
 	reqUrl := fmt.Sprintf("%s/api/send-msg", w.BaseUrl)
 	method := "POST"
 	params := map[string]interface{}{
-		"user_id_list": userIds,
-		"msg_list":     messages,
+		"user_id_list":   userIds,
+		"msg_list":       messages,
+		"client_id_list": clients,
 	}
 	status, _, _, err := wget.PostJson(reqUrl, method, params, nil)
 	if err != nil {

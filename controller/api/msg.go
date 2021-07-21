@@ -15,8 +15,9 @@ import (
 // SendMsg 发送信息
 func SendMsg(ctx *common.Context) {
 	type formValidate struct {
-		MsgList    []string `form:"msg_list" binding:"required" json:"msg_list"`
-		UserIdList []string `form:"user_id_list" binding:"required" json:"user_id_list"`
+		MsgList      []string `form:"msg_list" binding:"required" json:"msg_list"`
+		UserIdList   []string `form:"user_id_list" binding:"required" json:"user_id_list"`
+		ClientIdList []string `form:"client_id_list" binding:"" json:"client_id_list"`
 	}
 	var form formValidate
 	if err := ctx.ShouldBind(&form); err != nil {
@@ -45,7 +46,7 @@ func SendMsg(ctx *common.Context) {
 	}
 
 	for k, v := range wsMap {
-		if err := ws.SendMsg(config.Conf.WsList[k], v, form.MsgList); err != nil {
+		if err := ws.SendMsg(config.Conf.WsList[k], v, form.MsgList, form.ClientIdList); err != nil {
 			common.HandleResponse(ctx, code.BadRequest, nil, err.Error())
 			return
 		}
